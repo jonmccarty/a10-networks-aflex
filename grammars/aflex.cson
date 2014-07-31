@@ -1,0 +1,140 @@
+'scopeName': 'source.aflex'
+'fileTypes': [
+  'tcl'
+  'aflex'
+]
+'foldingStartMarker': '^(when)'
+'foldingStopMarker': '^}$'
+'name': 'A10 Networks aFleX'
+'patterns': [
+  {
+    'include': '#hash'
+  }
+  {
+    'include': '#event'
+  }
+  {
+    'include': '#log'
+  }
+  {
+    'include': '#set_variables'
+  }
+  {
+    'include': '#use_variables'
+  }
+  {
+    'include': '#set_global_variables'
+  }
+  {
+    'include': '#use_global_variables'
+  }
+  {
+    'include': '#commands'
+  }
+  {
+    'include': '#ipv4_address'
+  }
+  {
+    'include': '#ipv6_address'
+  }
+  {
+    'include': '#subnet'
+  }
+]
+'repository':
+  'hash':
+    'patterns': [
+        'match': '^#.*$'
+        'name': 'comment.line.a10networks'
+    ]
+  'event':
+    'patterns': [
+      {
+        'begin': '^(when)\\s'
+        'beginCaptures':
+          '1':
+            'name': 'normal.character.a10networks'
+        'end': '\\{'
+        'patterns': [
+          {
+            'match': '\\b(RULE_INIT|LB_.*|DB_.*|DIAMETER_.*|DNS_.*|FIX_.*|HTTP_.*|CLIENT_.*|SERVER_.*|CACHE_.*|SIP_.*|CLIENTSSL_.*|SERVERSSL_.*|X509_.*)\\b'
+            'name': 'entity.character.a10networks'
+          }
+        ]
+      }
+    ]
+  'log':
+    'patterns': [
+        'match': '\\b(log).*\\"'
+        'name': 'comment.line.a10networks'
+    ]
+  'set_variables':
+    'patterns': [
+      {
+        'match': '\\s+(set|append)\\s([a-zA-Z0-9\\-_]+)'
+        'captures':
+          '1':
+            'name': 'keyword.other.a10networks'
+          '2':
+            'name': 'string.other.a10networks'
+      }
+    ]
+  'use_variables':
+    'patterns': [
+      {
+        'match': '(\\$[a-zA-Z0-9\\-_]+)'
+        'captures':
+          '1':
+            'name': 'string.other.a10networks'
+      }
+    ]
+  'set_global_variables':
+    'patterns': [
+      {
+        'match': '\\s+(set|append)\\s([a-zA-Z0-9\\-_\\:]+)'
+        'captures':
+          '1':
+            'name': 'keyword.other.a10networks'
+          '2':
+            'name': 'string.regexp.a10networks'
+      }
+    ]
+  'use_global_variables':
+    'patterns': [
+      {
+        'match': '(\\$\\:\\:[a-zA-Z0-9\\-_\\:]+)'
+        'captures':
+          '1':
+            'name': 'string.regexp.a10networks'
+      }
+    ]
+  'commands':
+    'patterns': [
+      {
+        'match': '(\\[?[A-Z]+\\:\\:[a-z0-9_\\s]+\\]?)'
+        'captures':
+          '1':
+            'name': 'constant.character.a10networks'
+      }
+    ]
+  'ipv4_address':
+    'patterns': [
+      {
+        'match': '\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b'
+        'name': 'constant.numeric.a10networks'
+      }
+    ]
+  'ipv6_address':
+    'patterns': [
+      {
+        'match': '\\b([0-9a-fA-F]{0,4}|0)(\:([0-9a-fA-F]{0,4}|0)){1,7}\\b'
+        'name': 'constant.numeric.a10networks'
+      }
+    ]
+  'subnet':
+    'patterns': [
+      {
+        'match': '(\\s(255|0)\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}|/\\d{1,2})'
+        'name': 'string.regexp.a10networks'
+      }
+    ]
