@@ -65,7 +65,7 @@
     ]
   'log':
     'patterns': [
-        'match': '\\b(log).*\\"'
+        'match': '\\b(log)\\b.*\\"'
         'name': 'comment.line.a10networks'
     ]
   'set_variables':
